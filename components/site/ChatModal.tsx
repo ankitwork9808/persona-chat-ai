@@ -53,10 +53,10 @@ export default function ChatModal({
         <div className="flex items-center justify-between p-4 border-b border-white/10">
           <div className="flex items-center gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={mentor.avatar} alt={mentor.name} className="w-10 h-10 rounded-full" />
+            <img src={mentor.avatar} alt={mentor.name} className="w-10 h-10 rounded-full border-1 border-[transparent] p-[2px] bg-gradient-to-r from-[#eab308] via-[#f59e0b] via-[#fbbf24] via-purple-500 to-blue-500" style={{ backgroundClip: 'padding-box' }} />
             <div>
               <div className="text-white font-medium leading-tight">{mentor.name}</div>
-              <div className="text-white/50 text-xs">{mentor.greeting}</div>
+              <div className="text-lime-800 text-xs font-bold">Online</div>
             </div>
           </div>
           <button

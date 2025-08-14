@@ -39,7 +39,7 @@ export default function HomePage() {
     // choose active mentor id: "hitesh" | "piyush"
     const person = activeMentor;
 
-    // STREAMING (recommended)
+    // STREAMING
     const res = await fetch("/api/chat-stream", {
       method: "POST",
       body: JSON.stringify({
