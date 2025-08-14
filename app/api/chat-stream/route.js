@@ -1,30 +1,31 @@
 import OpenAI from "openai";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { personaToSystem } from "@/lib/persona-to-system";
 
 export const runtime = "nodejs"; 
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-async function loadPersona(id) {
+async function loadRawPersona(id) {
   const personaPath = path.join(process.cwd(), "app", "api", "person", `${id}.json`);
   const raw = await fs.readFile(personaPath, "utf8");
-  return JSON.parse(raw);
+  return raw;
 }
 
 export async function POST(request) {
   try {
     const { message, person = "hitesh", history = [] } = await request.json();
-    const persona = await loadPersona(person);
+    const persona = await loadRawPersona(person);
 
-    const systemParts = [
-      `You are ${persona.identity?.name ?? "a helpful teacher"}.`,
-      persona.identity?.role ? `Role: ${persona.identity.role}.` : "",
-      persona.identity?.mission ? `Mission: ${persona.identity.mission}.` : "",
-      persona.identity?.style?.tone ? `Speak in tone: ${persona.identity.style.tone}.` : "",
-      persona.identity?.style?.language ? `Language preference: ${persona.identity.style.language}.` : "",
-    ].filter(Boolean).join("\n");
+    const systemParts = `You are to roleplay as this persona. 
+Here is the complete persona JSON:
+${persona}
 
+Follow the identity, style, and knowledge strictly. 
+If you don't know something, say so. 
+Some information might be outdated or incorrect.`//personaToSystem(persona)
+    console.log(systemParts)
     const msgs = [
       { role: "system", content: systemParts },
       ...history.slice(-12),
@@ -34,7 +35,7 @@ export async function POST(request) {
     const stream = await openai.chat.completions.create({
       model: process.env.OPENAI_MODEL || "gpt-4o-mini",
       messages: msgs,
-      temperature: 0.6,
+      temperature: 0.7,
       stream: true,
     });
 
