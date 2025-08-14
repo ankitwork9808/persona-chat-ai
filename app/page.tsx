@@ -1,0 +1,87 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Header from "@/components/site/Header";
+import Footer from "@/components/site/Footer";
+import ChatModal from "@/components/site/ChatModal";
+import MentorCard from "@/components/site/MentorCard";
+import Hero from "@/components/site/Hero";
+import { mentors, MentorId } from "@/types/mentors";
+
+export default function HomePage() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [activeMentor, setActiveMentor] = useState<MentorId>("hitesh");
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const t = setTimeout(() => setIsLoaded(true), 100);
+    return () => clearTimeout(t);
+  }, []);
+
+  const openChat = (id: MentorId) => {
+    setActiveMentor(id);
+    setChatOpen(true);
+  };
+
+  const handleSend = () => {
+    if (!message.trim()) return;
+    console.log("Sending message:", message);
+    setMessage("");
+  };
+
+  return (
+    <div className="min-h-screen relative overflow-hidden bg-[radial-gradient(1200px_600px_at_10%_-10%,rgba(234,179,8,.18),transparent_40%),radial-gradient(1000px_500px_at_110%_-10%,rgba(245,158,11,.18),transparent_40%),linear-gradient(180deg,#0b0b10_0%,#0c0d12_60%,#0a0a0f_100%)]">
+   
+      <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.15)_1px,transparent_0)] bg-[length:20px_20px] pointer-events-none" />
+
+      <Header />
+
+      <ChatModal
+        isOpen={chatOpen}
+        mentor={mentors[activeMentor]}
+        message={message}
+        onChange={setMessage}
+        onSend={handleSend}
+        onClose={() => setChatOpen(false)}
+      />
+
+      <main className="relative z-10 max-w-7xl mx-auto px-6 h-[calc(100vh-80px)] flex items-center">
+        <div className="w-full grid lg:grid-cols-2 gap-12 items-center">
+          <Hero loaded={isLoaded} />
+
+          <div className="space-y-6">
+            <MentorCard
+              mentor={mentors.hitesh}
+              onChat={openChat}
+              accent="amber"
+              delayMs={200}
+              ctaPosition="right"
+              social={{
+                youtube: "https://www.youtube.com/@piyushgargdev",
+                twitter: "https://x.com/piyushgarg_dev",
+                linkedin: "https://www.linkedin.com/in/piyushgarg195/",
+                github: "https://github.com/piyushgarg-dev",
+              }}
+            />
+            <MentorCard
+              mentor={mentors.piyush}
+              onChat={openChat}
+              accent="purple"
+              ctaPosition="left"
+              delayMs={400}
+              social={{
+                youtube: "https://www.youtube.com/@piyushgargdev",
+                twitter: "https://x.com/piyushgarg_dev",
+                linkedin: "https://www.linkedin.com/in/piyushgarg195/",
+                github: "https://github.com/piyushgarg-dev",
+              }}
+            />
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
