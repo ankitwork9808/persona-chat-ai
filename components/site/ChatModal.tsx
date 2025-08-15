@@ -80,7 +80,7 @@ export default function ChatModal({
         <div className="flex-1 overflow-y-auto scroll-smooth px-4 py-5 space-y-4">
             {!messages.length && (
               <p className="text-white/60 text-center">
-                Start conversation by asking anything about your favorite teacher, topic, life, family, etc.
+                Kick off the conversation by asking anything about your favorite teacher, topic, life, family, or anything else that excites you.
               </p>
             )}
           <AnimatePresence initial={false}>
