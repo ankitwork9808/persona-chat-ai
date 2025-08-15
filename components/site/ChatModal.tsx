@@ -33,6 +33,13 @@ export default function ChatModal({
   isTyping = false,
 }: Props) {
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const chatEndRef = useRef(null);
+
+  useEffect(() => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
 
   useEffect(() => {
     if (isOpen) inputRef.current?.focus();
@@ -69,6 +76,11 @@ export default function ChatModal({
         </div>
 
         <div className="flex-1 overflow-y-auto scroll-smooth px-4 py-5 space-y-4">
+            {!messages.length && (
+              <p className="text-white/60 text-center">
+                Start conversation by asking anything about your favorite teacher, topic, life, family, etc.
+              </p>
+            )}
           <AnimatePresence initial={false}>
             {messages.map((m) => (
               <motion.div
@@ -90,6 +102,7 @@ export default function ChatModal({
                 </div>
               </motion.div>
             ))}
+            <div ref={chatEndRef} />
           </AnimatePresence>
 
           <AnimatePresence>

@@ -22,6 +22,7 @@ export default function HomePage() {
   }, []);
 
   const openChat = (id: MentorId) => {
+    if(activeMentor != id) setMessages([]);
     setActiveMentor(id);
     setChatOpen(true);
   };

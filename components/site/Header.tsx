@@ -20,7 +20,7 @@ export default function Header() {
 
         <nav className="hidden md:flex items-center gap-2">
           <a
-            href="#"
+            href="https://www.youtube.com/@ankitchaudhary6724"
             className="flex items-center gap-2 px-4 py-2 rounded-full text-white/80 hover:text-white hover:bg-white/10 backdrop-blur transition-all duration-300 border border-transparent hover:border-white/20"
           >
             <Youtube className="w-4 h-4" />
