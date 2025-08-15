@@ -107,10 +107,10 @@ export default function HomePage() {
               delayMs={200}
               ctaPosition="right"
               social={{
-                youtube: "https://www.youtube.com/@piyushgargdev",
-                twitter: "https://x.com/piyushgarg_dev",
-                linkedin: "https://www.linkedin.com/in/piyushgarg195/",
-                github: "https://github.com/piyushgarg-dev",
+                youtube: "https://www.youtube.com/@HiteshCodeLab",
+                twitter: "https://x.com/Hiteshdotcom",
+                linkedin: "https://www.linkedin.com/in/hiteshchoudhary/",
+                github: "https://github.com/hiteshchoudhary",
               }}
             />
             <MentorCard

@@ -62,7 +62,9 @@ export default function ChatModal({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={mentor.avatar} alt={mentor.name} className="w-10 h-10 rounded-full border-1 border-[transparent] p-[2px] bg-gradient-to-r from-[#eab308] via-[#f59e0b] via-[#fbbf24] via-purple-500 to-blue-500" style={{ backgroundClip: 'padding-box' }} />
             <div>
-              <div className="text-white font-medium leading-tight">{mentor.name}</div>
+              <div className="text-white font-medium leading-tight">{mentor.name}
+                <sup className="mx-2 px-2 text-xs bg-gradient-to-b from-[#eab308] to-amber-500 rounded-full">AI Assistance</sup>
+            </div>
               <div className="text-lime-800 text-xs font-bold">Online</div>
             </div>
           </div>
