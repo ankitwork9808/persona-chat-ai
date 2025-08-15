@@ -27,7 +27,7 @@ export default function Header() {
             <span className="font-medium">YouTube</span>
           </a>
           <a
-            href="#"
+            href="https://github.com/ankitwork9808/persona-chat-ai"
             className="flex items-center gap-2 px-4 py-2 rounded-full text-white/80 hover:text-white hover:bg-white/10 backdrop-blur transition-all duration-300 border border-transparent hover:border-white/20"
           >
             <Github className="w-4 h-4" />

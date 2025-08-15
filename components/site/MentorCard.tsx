@@ -103,7 +103,13 @@ export default function MentorCard({
                   borderColor: `${(mentor.colorBadge ?? "#eab308")}4d`,
                 }}
               >
-                Educator
+                Tech Educator
+              </span>
+              <span className="px-2 py-1 bg-cyan-400/20 text-cyan-400 text-xs rounded-full border border-cyan-400/30">
+                Mentor
+              </span>
+              <span className="px-2 py-1 bg-cyan-400/20 text-cyan-400 text-xs rounded-full border border-cyan-400/30">
+                YouTuber
               </span>
               <span className="px-2 py-1 bg-cyan-400/20 text-cyan-400 text-xs rounded-full border border-cyan-400/30">
                 Full-Stack
